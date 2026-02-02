@@ -1,14 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tabicl
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
-TabICL: A Tabular Foundation Model for In-Context Learning on Large Data
-with reticulate
+# tabicl    
 
-## Setup
+TabICL: A Tabular Foundation Model for In-Context Learning on Large Data with reticulate
 
-``` r
+## Setup 
+```r
 pak::pak("frankiethull/tabicl")
 
 tabicl::create_tabicl_env()
@@ -18,7 +28,7 @@ tabicl::install_tabicl_dependencies()
 
 ## Example
 
-``` r
+```{r example}
 library(tabicl)
 library(rsample)
 tabicl::use_tabicl_env()
@@ -33,9 +43,8 @@ test <- testing(corn_splits)
 
 ### Classification
 
-TabICL currently supports classification only.
-
-``` r
+TabICL currently supports classification only. 
+```{r}
 fit_cls <- tabicl_fit(
   train |> dplyr::select(-type), train$type
 )
@@ -43,18 +52,10 @@ fit_cls <- tabicl_fit(
 class_preds <- tabicl_predict(fit_cls, test |> dplyr::select(-type))
 
 class_preds |> head()
-#> [1] "Sweet" "Sweet" "Sweet" "Sweet" "Sweet" "Sweet"
 ```
 
-``` r
+```{r}
 class_probs <- tabicl_predict(fit_cls, test |> dplyr::select(-type), type = "proba")
 
 class_probs |> head()
-#>              [,1]         [,2]      [,3]
-#> [1,] 3.180874e-04 0.4686041176 0.5310778
-#> [2,] 2.331440e-06 0.0081485659 0.9918491
-#> [3,] 2.480220e-05 0.0058765872 0.9940987
-#> [4,] 3.995111e-04 0.0020134081 0.9975871
-#> [5,] 1.918932e-04 0.1525884420 0.8472196
-#> [6,] 9.983029e-06 0.0002897682 0.9997003
 ```

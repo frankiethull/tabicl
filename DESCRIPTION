@@ -1,0 +1,13 @@
+Package: tabicl
+Title: A Tabular Foundation Model for In-Context Learning on Large Data with reticulate
+Version: 0.0.0.9000
+Authors@R: 
+    person("frank", "hull", , "frankiethull@proton.me", role = c("aut", "cre"))
+Description: Bindings for TabICL, a tabular foundation model. 
+    This package provides R bindings to the python library (soda-inria/tabicl) via reticulate. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    reticulate
