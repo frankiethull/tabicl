@@ -4,10 +4,12 @@
 \alias{tabicl_fit}
 \title{Fit tabicl Tabular Foundation Model}
 \usage{
-tabicl_fit(X, y, ...)
+tabicl_fit(X, y, problem_type = "classification", ...)
 }
 \arguments{
 \item{X}{training data}
+
+\item{problem_type}{either "classification" or "regression"}
 
 \item{...}{for tabicl additional hyperparameters such as \code{batch_size}}
 

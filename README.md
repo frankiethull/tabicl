@@ -33,12 +33,16 @@ test <- testing(corn_splits)
 
 ### Classification
 
-TabICL currently supports classification only.
+TabICLv2 supports classification and regression.
 
 ``` r
 fit_cls <- tabicl_fit(
   train |> dplyr::select(-type), train$type
 )
+#> INFO: You are downloading 'tabicl-classifier-v2-20260212.ckpt', the latest best-performing version, used in our TabICLv2 paper.
+#> 
+#> Checkpoint 'tabicl-classifier-v2-20260212.ckpt' not cached.
+#>  Downloading from Hugging Face Hub (jingang/TabICL).
 
 class_preds <- tabicl_predict(fit_cls, test |> dplyr::select(-type))
 
@@ -51,10 +55,25 @@ class_probs <- tabicl_predict(fit_cls, test |> dplyr::select(-type), type = "pro
 
 class_probs |> head()
 #>              [,1]         [,2]      [,3]
-#> [1,] 3.180874e-04 0.4686041176 0.5310778
-#> [2,] 2.331440e-06 0.0081485659 0.9918491
-#> [3,] 2.480220e-05 0.0058765872 0.9940987
-#> [4,] 3.995111e-04 0.0020134081 0.9975871
-#> [5,] 1.918932e-04 0.1525884420 0.8472196
-#> [6,] 9.983029e-06 0.0002897682 0.9997003
+#> [1,] 6.042506e-06 0.0007294500 0.9992645
+#> [2,] 4.003172e-06 0.0027193110 0.9972767
+#> [3,] 1.184751e-05 0.0002443175 0.9997439
+#> [4,] 2.951169e-06 0.0010944309 0.9989026
+#> [5,] 5.359673e-06 0.0004850619 0.9995096
+#> [6,] 7.217017e-06 0.0253459066 0.9746469
+```
+
+### Regression
+
+TabICLv2 supports classification and regression.
+
+``` r
+fit_reg <- tabicl_fit(
+  train |> dplyr::select(-height), train$height, problem_type = "regression"
+)
+
+preds <- tabicl_predict(fit_reg, test |> dplyr::select(-height))
+
+preds |> head()
+#> [1] 60.83174 60.56970 60.29520 60.02024 59.83897 60.31300
 ```

@@ -43,7 +43,7 @@ test <- testing(corn_splits)
 
 ### Classification
 
-TabICL currently supports classification only. 
+TabICLv2 supports classification and regression. 
 ```{r}
 fit_cls <- tabicl_fit(
   train |> dplyr::select(-type), train$type
@@ -58,4 +58,18 @@ class_preds |> head()
 class_probs <- tabicl_predict(fit_cls, test |> dplyr::select(-type), type = "proba")
 
 class_probs |> head()
+```
+
+
+### Regression
+
+TabICLv2 supports classification and regression. 
+```{r}
+fit_reg <- tabicl_fit(
+  train |> dplyr::select(-height), train$height, problem_type = "regression"
+)
+
+preds <- tabicl_predict(fit_reg, test |> dplyr::select(-height))
+
+preds |> head()
 ```

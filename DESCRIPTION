@@ -1,6 +1,6 @@
 Package: tabicl
 Title: A Tabular Foundation Model for In-Context Learning on Large Data with reticulate
-Version: 0.0.0.9000
+Version: 0.0.1.9000
 Authors@R: 
     person("frank", "hull", , "frankiethull@proton.me", role = c("aut", "cre"))
 Description: Bindings for TabICL, a tabular foundation model. 
